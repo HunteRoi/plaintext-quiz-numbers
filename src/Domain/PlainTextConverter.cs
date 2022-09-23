@@ -17,9 +17,29 @@ public static class PlainTextConverter
         {7, "siete"},
         {8, "ocho"},
         {9, "nueve"},
+        {10, "diez"},
+        {11, "once"},
+        {12, "doce"},
+        {13, "trece"},
+        {14, "catorce"},
+        {15, "quince"},
+        {16, "dieciséis"},
+        {17, "diecisiete"},
+        {18, "dieciocho"},
+        {19, "diecinueve"},
+        {20, "veinte"},
+        {21, "veintiuno"},
+        {22, "veintidós"},
+        {23, "veintitrés"},
+        {24, "veinticuatro"},
+        {25, "veinticinco"},
+        {26, "veintiséis"},
+        {27, "veintisiete"},
+        {28, "vientiocho"},
+        {29, "vientinueve"},
     };
 
-    public static Option<string> ConvertWithOption(int digit)
+    public static Option<string> Convert(int digit)
     {
         return Optional(Mapping.GetValueOrDefault(digit));
     }
