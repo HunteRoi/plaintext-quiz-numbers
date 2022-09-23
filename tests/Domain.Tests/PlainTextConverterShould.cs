@@ -5,21 +5,28 @@ namespace Domain.Tests;
 public class PlainTextConverterShould
 {
     [Theory]
+    [InlineData(0, "cero")]
     [InlineData(1, "uno")]
+    [InlineData(2, "dos")]
     [InlineData(3, "tres")]
+    [InlineData(4, "cuatro")]
     [InlineData(5, "cinco")]
-    public void ConvertDigitIntoPlainTextWithOption(int number, string plainTextNumber)
+    [InlineData(6, "seis")]
+    [InlineData(7, "siete")]
+    [InlineData(8, "ocho")]
+    [InlineData(9, "nueve")]
+    public void ConvertKnownDigitIntoPlainText(int number, string plainTextNumber)
     {
-        PlainTextConverter
-            .ConvertWithOption(number)
-            .IfSome(value => value.Should().BeEquivalentTo(plainTextNumber));
+        var option = PlainTextConverter.ConvertWithOption(number);
+
+        option.IfSome(value => value.Should().BeEquivalentTo(plainTextNumber));
+        option.IsNone.Should().BeFalse();
     }
-    
+
     [Fact]
-    public void ConvertUnknownDigitIntoPlainTextWithOption()
+    public void ConvertUnknownDigitIntoPlainText()
     {
-        PlainTextConverter
-            .ConvertWithOption(6)
+        PlainTextConverter.ConvertWithOption(-1)
             .IsNone
             .Should()
             .BeTrue();
