@@ -1,6 +1,4 @@
 using FluentAssertions;
-using LanguageExt;
-using static LanguageExt.Prelude;
 
 namespace Domain.Tests;
 
@@ -10,18 +8,11 @@ public class PlainTextConverterShould
     [InlineData(1, "uno")]
     [InlineData(3, "tres")]
     [InlineData(5, "cinco")]
-    public void ConvertDigitIntoPlainText(int number, string expected) =>
-        PlainTextConverter
-            .Convert(number)
-            .Should()
-            .BeEquivalentTo(expected);
-
-    [Fact]
-    public void ConvertDigitIntoPlainTextWithOption()
+    public void ConvertDigitIntoPlainTextWithOption(int number, string plainTextNumber)
     {
         PlainTextConverter
-            .ConvertWithOption(1)
-            .IfSome(value => value.Should().BeEquivalentTo("uno"));
+            .ConvertWithOption(number)
+            .IfSome(value => value.Should().BeEquivalentTo(plainTextNumber));
     }
     
     [Fact]

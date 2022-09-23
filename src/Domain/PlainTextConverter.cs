@@ -10,15 +10,10 @@ public static class PlainTextConverter
         {3, "tres"},
         {5, "cinco"}
     };
-    
-    public static string? Convert(int digit)
-    {
-        return Mapping.GetValueOrDefault(digit);
-    }
 
     public static Option<string> ConvertWithOption(int digit)
     {
-        var value = Convert(digit);
+        var value = Mapping.GetValueOrDefault(digit);
         return value ?? Option<string>.None;
     }
 }
