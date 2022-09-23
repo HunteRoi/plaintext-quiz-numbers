@@ -1,4 +1,5 @@
 using LanguageExt;
+using LanguageExt.UnsafeValueAccess;
 using static LanguageExt.Prelude;
 
 namespace Domain;
@@ -37,10 +38,40 @@ public static class PlainTextConverter
         {27, "veintisiete"},
         {28, "vientiocho"},
         {29, "vientinueve"},
+        {30, "treinta"},
+        {40, "cuarenta"},
+        {50, "cincuenta"},
+        {60, "sesenta"},
+        {70, "setenta"},
+        {80, "ochenta"},
+        {90, "noventa"},
+        {100, "ciento"},
+        {110, "ciento y diez"}
     };
 
-    public static Option<string> Convert(int digit)
+    private static string? InnerConvert(int number)
     {
-        return Optional(Mapping.GetValueOrDefault(digit));
+        return Mapping.GetValueOrDefault(number);
+    }
+    
+    public static Option<string> Convert(int number)
+    {
+        if (number < 100 && number > 30 && number % 10 != 0)
+        {
+            int rest = number % 10;
+            int substraction = number - rest;
+            var substractionAsPlainText = InnerConvert(substraction);
+            var restAsPlainText = InnerConvert(rest);
+            return $"{substractionAsPlainText} y {restAsPlainText}";
+        }
+        if (number > 100 && number % 100 != 0)
+        {
+            int rest = number % 100;
+            int substraction = number - rest;
+            var substractionAsPlainText = InnerConvert(substraction);
+            var restAsPlainText = InnerConvert(rest);
+            return $"{substractionAsPlainText} y {restAsPlainText}";
+        }
+        return Optional(InnerConvert(number));
     }
 }
