@@ -4,5 +4,6 @@
     &lt;TestId&gt;NUnit3x::0AE9EA64-6CA1-42D9-B43D-46AFA953D88E::net6.0::Domain.UnitTests.PlainTextConverterShould.Convert5IntoCinco&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::0AE9EA64-6CA1-42D9-B43D-46AFA953D88E::net6.0::Domain.UnitTests.PlainTextConverterShould.Convert1IntoUno&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::0AE9EA64-6CA1-42D9-B43D-46AFA953D88E::net6.0::Domain.UnitTests.PlainTextConverterShould.Convert3IntoTres&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::D9E15633-90A8-4FD1-AF68-20C5829C6F21::net6.0::Domain.Tests.PlainTextConverterShould&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
