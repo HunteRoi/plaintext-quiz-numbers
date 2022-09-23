@@ -46,7 +46,8 @@ public static class PlainTextConverter
         {80, "ochenta"},
         {90, "noventa"},
         {100, "ciento"},
-        {110, "ciento y diez"}
+        {110, "ciento y diez"},
+        {200, "doscientos"}
     };
 
     private static string? InnerConvert(int number)
@@ -66,11 +67,20 @@ public static class PlainTextConverter
         }
         if (number > 100 && number % 100 != 0)
         {
-            int rest = number % 100;
-            int substraction = number - rest;
-            var substractionAsPlainText = InnerConvert(substraction);
-            var restAsPlainText = InnerConvert(rest);
-            return $"{substractionAsPlainText} y {restAsPlainText}";
+            Option<string> outerRestAsPlainText = Option<string>.None;
+            int outerRest = number % 100;
+            int outerSubstraction = number - outerRest;
+            if (outerRest > 30 && outerRest % 10 != 0)
+            {
+                int rest = outerRest % 10;
+                int substraction = outerRest - rest;
+                var substractionAsPlainText = InnerConvert(substraction);
+                var restAsPlainText = InnerConvert(rest);
+                outerRestAsPlainText = $"{substractionAsPlainText} y {restAsPlainText}";
+            }
+            var outerSubstractionAsPlainText = InnerConvert(outerSubstraction);
+            outerRestAsPlainText = outerRestAsPlainText.IfNone(() => InnerConvert(outerRest));
+            return $"{outerSubstractionAsPlainText} y {outerRestAsPlainText.ValueUnsafe()}";
         }
         return Optional(InnerConvert(number));
     }

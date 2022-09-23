@@ -59,6 +59,8 @@ public class PlainTextConverterShould
     [InlineData(121, "ciento y veintiuno")]
     [InlineData(130, "ciento y treinta")]
     [InlineData(131, "ciento y treinta y uno")]
+    [InlineData(199, "ciento y noventa y nueve")]
+    [InlineData(200, "doscientos")]
     public void ConvertKnownNumberIntoPlainText(int number, string plainTextNumber)
     {
         var option = PlainTextConverter.Convert(number);
