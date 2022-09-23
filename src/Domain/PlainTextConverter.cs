@@ -4,20 +4,21 @@ namespace Domain;
 
 public static class PlainTextConverter
 {
-    private static Dictionary<int, string> _mapping = new()
+    private static readonly Dictionary<int, string> Mapping = new()
     {
         {1, "uno"},
         {3, "tres"},
         {5, "cinco"}
     };
     
-    public static string Convert(int digit)
+    public static string? Convert(int digit)
     {
-        return _mapping.GetValueOrDefault(digit);
+        return Mapping.GetValueOrDefault(digit);
     }
 
     public static Option<string> ConvertWithOption(int digit)
     {
-        return Optional(Convert(digit));
+        var value = Convert(digit);
+        return value ?? Option<string>.None;
     }
 }
