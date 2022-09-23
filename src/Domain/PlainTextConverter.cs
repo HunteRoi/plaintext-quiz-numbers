@@ -1,4 +1,5 @@
 using LanguageExt;
+using static LanguageExt.Prelude;
 
 namespace Domain;
 
@@ -13,7 +14,6 @@ public static class PlainTextConverter
 
     public static Option<string> ConvertWithOption(int digit)
     {
-        var value = Mapping.GetValueOrDefault(digit);
-        return value ?? Option<string>.None;
+        return Optional(Mapping.GetValueOrDefault(digit));
     }
 }
